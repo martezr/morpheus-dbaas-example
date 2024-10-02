@@ -1,0 +1,61 @@
+<script nonce="{{webnonce}}">
+   var outsideVariable;
+
+
+    //document.getElementsByClassName("resource-header").removeEventListener("ajax:send",)
+
+    window.addEventListener("ajax:send", function(event) {
+        event.stopImmediatePropagation();
+    }, true);
+
+   document.getElementById("instance-header-info-details").remove()
+   appTabs = document.querySelector("#nav-tabs-wrapper").children
+   for (const item of appTabs) {
+      console.log(item.innerText)
+      /*
+      if (item.innerText == "Storage") {
+         console.log("Storage")
+         console.log(item)
+         item.remove()
+      }
+      if (item.innerText == "Monitoring") {
+         item.remove()
+      }
+      if (item.innerText == "Wiki") {
+         item.remove()
+      }
+      if (item.innerText == "Network") {
+         item.remove()
+      }
+      if (item.innerText == "Runtime") {
+         item.remove()
+      }
+      if (item.innerText == "Console") {
+         item.remove()
+      }
+      */
+   }
+
+    element = document.querySelector("#nav-tabs-wrapper")
+    console.log(element.children.length)
+    while (element.children.length > 3) {
+        element.removeChild(element.children[1]);
+    }
+
+</script>
+
+
+<div>
+<p>Get the individual parameters to configure a PostgreSQL client or application to connect to your database.</p>
+
+<pre>
+username: demouser
+password: demodb
+host: {{ host }}
+port: 5432
+database: demodb
+connection string: postgresql://demouser:demodb@{{ host }}:5432/demodb
+</pre>
+
+
+</div>

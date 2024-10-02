@@ -1,0 +1,585 @@
+<script nonce="{{webnonce}}" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script nonce="{{webnonce}}" src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col-sm-6">
+      <div>
+         <canvas id="cpuChart"></canvas>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div>
+         <canvas id="ramChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+   <!-- Second Row -->
+  <div class="row">
+    <div class="col-sm-3">
+      <div>
+         <canvas id="diskReadBytesChart"></canvas>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div>
+         <canvas id="diskReadOperationsChart"></canvas>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div>
+         <canvas id="diskWriteBytesChart"></canvas>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div>
+         <canvas id="diskWriteOperationsChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+   <!-- Third Row -->
+  <div class="row">
+    <div class="col-sm-3">
+      <div>
+         <canvas id="networkOutChart"></canvas>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div>
+         <canvas id="networkInChart"></canvas>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div>
+         <canvas id="networkOutPacketsChart"></canvas>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div>
+         <canvas id="networkInPacketsChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CPU Chart -->
+<script nonce="{{webnonce}}">
+  const cpuctx = document.getElementById('cpuChart');
+
+  console.log("Found Context")
+  console.log(cpuctx)
+  new Chart(cpuctx, {
+    type: 'line',
+    data: {
+      labels: ['12:00', '12:15', '12:30', '12:45', '1:00', '1:15'],
+      datasets: [{
+        data: [65, 59, 80, 81, 56, 55, 40],
+        pointStyle: false,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+         y: {
+            min: 0,
+            max: 100,
+            grid: {
+               display: true
+            },
+            border: {
+               display: false
+            }
+         },
+         x: {
+            grid: {
+               display: false
+            },
+         },
+      },
+      plugins: {
+         legend: {
+            display: false,
+         },
+         title: {
+            display: true,
+            text: 'CPU Utilization',
+            align: 'start'
+         }
+      }
+    }
+  });
+</script>
+
+<!-- RAM Chart -->
+<script nonce="{{webnonce}}">
+  const ramctx = document.getElementById('ramChart');
+
+  console.log("Found Context")
+  console.log(ramctx)
+  new Chart(ramctx, {
+    type: 'line',
+    data: {
+      labels: ['12:00', '12:15', '12:30', '12:45', '1:00', '1:15'],
+      datasets: [{
+        data: [12, 18, 25, 20, 24, 18],
+        pointStyle: false,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+         y: {
+            min: 0,
+            max: 100,
+            grid: {
+               display: true
+            },
+            border: {
+               display: false
+            }
+         },
+         x: {
+            grid: {
+               display: false
+            },
+         },
+      },
+      plugins: {
+         legend: {
+            display: false,
+            //position: 'bottom',
+         },
+         title: {
+            display: true,
+            text: 'Memory Utilization',
+            align: 'start'
+         }
+      }
+    }
+  });
+</script>
+
+<!-- Disk Write Bytes Chart -->
+<script nonce="{{webnonce}}">
+  const diskWriteBytesCTX = document.getElementById('diskWriteBytesChart');
+
+  console.log("Found Context")
+  console.log(diskWriteBytesCTX)
+  new Chart(diskWriteBytesCTX, {
+    type: 'line',
+    data: {
+      labels: ['12:00', '12:15', '12:30', '12:45', '1:00', '1:15'],
+      datasets: [{
+        data: [65, 59, 80, 81, 56, 55, 40],
+        pointStyle: false,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+         y: {
+            grid: {
+               display: true
+            },
+            border: {
+               display: false
+            }
+         },
+         x: {
+            grid: {
+               display: false
+            },
+         },
+      },
+      plugins: {
+         legend: {
+            display: false,
+         },
+         title: {
+            display: true,
+            text: 'Disk Write Bytes',
+            align: 'start'
+         }
+      }
+    }
+  });
+</script>
+
+<!-- Disk Write Operations Chart -->
+<script nonce="{{webnonce}}">
+  const diskWriteOperationsCTX = document.getElementById('diskWriteOperationsChart');
+
+  console.log("Found Context")
+  console.log(diskWriteOperationsCTX)
+  new Chart(diskWriteOperationsCTX, {
+    type: 'line',
+    data: {
+      labels: ['12:00', '12:15', '12:30', '12:45', '1:00', '1:15'],
+      datasets: [{
+        data: [65, 59, 80, 81, 56, 55, 40],
+        pointStyle: false,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+         y: {
+            grid: {
+               display: true
+            },
+            border: {
+               display: false
+            }
+         },
+         x: {
+            grid: {
+               display: false
+            },
+         },
+      },
+      plugins: {
+         legend: {
+            display: false,
+         },
+         title: {
+            display: true,
+            text: 'Disk Write Operations',
+            align: 'start'
+         }
+      }
+    }
+  });
+</script>
+
+<!-- Disk Read Bytes Chart -->
+<script nonce="{{webnonce}}">
+  const diskReadBytesCTX = document.getElementById('diskReadBytesChart');
+
+  console.log("Found Context")
+  console.log(diskReadBytesCTX)
+  new Chart(diskReadBytesCTX, {
+    type: 'line',
+    data: {
+      labels: ['12:00', '12:15', '12:30', '12:45', '1:00', '1:15'],
+      datasets: [{
+        data: [65, 59, 80, 81, 56, 55, 40],
+        pointStyle: false,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+         y: {
+            grid: {
+               display: true
+            },
+            border: {
+               display: false
+            }
+         },
+         x: {
+            grid: {
+               display: false
+            },
+         },
+      },
+      plugins: {
+         legend: {
+            display: false,
+         },
+         title: {
+            display: true,
+            text: 'Disk Read Bytes',
+            align: 'start'
+         }
+      }
+    }
+  });
+</script>
+
+<!-- Disk Read Operations Chart -->
+<script nonce="{{webnonce}}">
+  const diskReadOperationsCTX = document.getElementById('diskReadOperationsChart');
+
+  console.log("Found Context")
+  console.log(diskReadOperationsCTX)
+  new Chart(diskReadOperationsCTX, {
+    type: 'line',
+    data: {
+      labels: ['12:00', '12:15', '12:30', '12:45', '1:00', '1:15'],
+      datasets: [{
+        data: [65, 59, 80, 81, 56, 55, 40],
+        pointStyle: false,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+         y: {
+            grid: {
+               display: true
+            },
+            border: {
+               display: false
+            }
+         },
+         x: {
+            grid: {
+               display: false
+            },
+         },
+      },
+      plugins: {
+         legend: {
+            display: false,
+         },
+         title: {
+            display: true,
+            text: 'Disk Read Operations',
+            align: 'start'
+         }
+      }
+    }
+  });
+</script>
+
+<!-- Network Out Chart -->
+<script nonce="{{webnonce}}">
+  const networkOutCTX = document.getElementById('networkOutChart');
+
+  console.log("Found Context")
+  console.log(networkOutCTX)
+  new Chart(networkOutCTX, {
+    type: 'line',
+    data: {
+      labels: ['12:00', '12:15', '12:30', '12:45', '1:00', '1:15'],
+      datasets: [{
+        data: [65, 59, 80, 81, 56, 55, 40],
+        pointStyle: false,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+         y: {
+            grid: {
+               display: true
+            },
+            border: {
+               display: false
+            }
+         },
+         x: {
+            grid: {
+               display: false
+            },
+         },
+      },
+      plugins: {
+         legend: {
+            display: false,
+         },
+         title: {
+            display: true,
+            text: 'Network Out (Bytes)',
+            align: 'start'
+         }
+      }
+    }
+  });
+</script>
+
+<!-- Network In Chart -->
+<script nonce="{{webnonce}}">
+  const networkInCTX = document.getElementById('networkInChart');
+
+  console.log("Found Context")
+  console.log(networkInCTX)
+  new Chart(networkInCTX, {
+    type: 'line',
+    data: {
+      labels: ['12:00', '12:15', '12:30', '12:45', '1:00', '1:15'],
+      datasets: [{
+        data: [65, 59, 80, 81, 56, 55, 40],
+        pointStyle: false,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+         y: {
+            grid: {
+               display: true
+            },
+            border: {
+               display: false
+            }
+         },
+         x: {
+            grid: {
+               display: false
+            },
+         },
+      },
+      plugins: {
+         legend: {
+            display: false,
+         },
+         title: {
+            display: true,
+            text: 'Network In (Bytes)',
+            align: 'start'
+         }
+      }
+    }
+  });
+</script>
+
+<!-- Network Out Packets Chart -->
+<script nonce="{{webnonce}}">
+  const networkOutPacketsCTX = document.getElementById('networkOutPacketsChart');
+
+  console.log("Found Context")
+  console.log(networkOutPacketsCTX)
+  new Chart(networkOutPacketsCTX, {
+    type: 'line',
+    data: {
+      labels: ['12:00', '12:15', '12:30', '12:45', '1:00', '1:15'],
+      datasets: [{
+        data: [65, 59, 80, 81, 56, 55, 40],
+        pointStyle: false,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+         y: {
+            grid: {
+               display: true
+            },
+            border: {
+               display: false
+            }
+         },
+         x: {
+            grid: {
+               display: false
+            },
+         },
+      },
+      plugins: {
+         legend: {
+            display: false,
+         },
+         title: {
+            display: true,
+            text: 'Network Out (# of Packets)',
+            align: 'start'
+         }
+      }
+    }
+  });
+</script>
+
+<!-- Network In Chart -->
+<script nonce="{{webnonce}}">
+  const networkInPacketsCTX = document.getElementById('networkInPacketsChart');
+  console.log("Range Test")
+  console.log("{{timeRange}}")
+  console.log(networkInPacketsCTX)
+  new Chart(networkInPacketsCTX, {
+    type: 'line',
+    data: {
+      labels: ['12:00', '12:15', '12:30', '12:45', '1:00', '1:15'],
+      datasets: [{
+        data: [125, 30, 156, 13, 188, 22, 40],
+        pointStyle: false,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+         y: {
+            grid: {
+               display: true
+            },
+            border: {
+               display: false
+            }
+         },
+         x: {
+            grid: {
+               display: false
+            },
+         },
+      },
+      plugins: {
+         legend: {
+            display: false,
+         },
+         title: {
+            display: true,
+            text: 'Network In (# of Packets)',
+            align: 'start'
+         }
+      }
+    }
+  });
+</script>
+
+<!-- Logs Chart -->
+<script nonce="{{webnonce}}">
+  const logsCTX = document.getElementById('logsChart');
+  new Chart(logsCTX, {
+    type: 'bar',
+    data: {
+      labels: ['12:00', '12:15', '12:30', '12:45', '1:00', '1:15'],
+      datasets: [{
+         label: 'My First Dataset',
+         data: [65, 59, 80, 81, 56, 55, 40],
+         backgroundColor: "red",
+      },
+      {
+         label: 'My First Dataset',
+         data: [65, 59, 80, 81, 56, 55, 40],
+         backgroundColor: "blue",
+      }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+         y: {
+            stacked: true,
+            grid: {
+               display: true
+            },
+            border: {
+               display: false
+            }
+         },
+         x: {
+            stacked: true,
+            grid: {
+               display: false
+            },
+         },
+      },
+      plugins: {
+         legend: {
+            display: false,
+         },
+         title: {
+            display: true,
+            text: 'Network In (# of Packets)',
+            align: 'start'
+         }
+      }
+    }
+  });
+</script>

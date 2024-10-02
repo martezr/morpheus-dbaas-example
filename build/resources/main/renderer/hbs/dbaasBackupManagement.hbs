@@ -1,0 +1,162 @@
+<div>
+   <div class="row" style="margin-bottom: 20px;">
+         <div class="col-sm-4">
+               <button class="btn btn-info env-add" style="border-radius: 5px;" data-target="#create-backup-modal" data-toggle="modal" data-key="CloudTrail">+  Create Backup</button>
+         </div>
+   </div>
+   <table class="table table-striped current saved-envs">
+         <thead>
+         <tr>
+               <th>Name</th>
+               <th>Description</th>
+               <th>Value</th>
+               <th>Sensitive</th>
+               <th></th>
+         </tr>
+         </thead>
+			<tbody id="terraform-resource-body"></tbody>
+   </table>
+
+   <!-- Create Backups Modal -->
+   <div class="modal fade" tabindex="-1" role="dialog" id="create-backup-modal">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true"><svg class="close-icon"><use xlink:href="/assets/icons.svg#close-window"></use></svg></span>
+               </button>
+               <h4 class="modal-title">Create Backup</h4>
+            </div>
+            <div class="modal-body">
+
+      <form id="createVariableForm" action="/plugin/opentofu/createVariable" method="post" role="form" class="form-horizontal" data-remote="true">
+      <input id="createVariableCSRF" type="hidden" name="_csrf">
+      <input type="hidden" name="_method" value="PUT" id="_method">
+         <div class="workflow"><div class="workflow-form-options" data-id="9">	
+               <div class="form-group">
+               <!-- Variable Name -->
+               <div id="variableName" name="variableName" class="form-group">
+               <label class="control-label" style="padding-left: 5px;padding-bottom: 5px;">Database Name</label>
+               <div class="col-sm-12">
+                  <input type="text" class="form-control input-sm" name="variableNameValue" id="variableNameValue" style="border-radius: 5px;">
+               </div>
+               </div>
+
+         </div>
+      </div>
+   </div>
+   </form>
+
+   </div>
+            <div class="modal-footer">
+               <button id="createBackupSubmit" type="submit" class="btn btn-primary" data-loading-text="Creating..." data-submit="true" data-auto-reset="false">Create Backup</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- Edit Variable Modal -->
+   <div class="modal fade" tabindex="-1" role="dialog" id="edit-variable-modal">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true"><svg class="close-icon"><use xlink:href="/assets/icons.svg#close-window"></use></svg></span>
+               </button>
+               <h4 class="modal-title">Edit Variable</h4>
+            </div>
+            <div class="modal-body">
+
+      <form id="editVariableForm" action="/plugin/opentofu/editVariable" method="post" role="form" class="form-horizontal" data-remote="true">
+      <input id="createVariableCSRF" type="hidden" name="_csrf">
+      <input type="hidden" name="_method" value="PUT" id="_method">
+         <div class="workflow"><div class="workflow-form-options" data-id="9">	
+               <div class="form-group">
+               <!-- Variable Name -->
+               <div id="variableName" name="variableName" class="form-group">
+               <label class="control-label" style="padding-left: 5px;padding-bottom: 5px;">Name</label>
+               <div class="col-sm-12">
+                  <input type="text" class="form-control input-sm" name="variableNameValue" id="editVariableNameValue" style="border-radius: 5px;">
+               </div>
+               </div>
+
+
+               <!-- Variable Description -->
+               <div id="variableDescription" name="variableDescription" class="form-group">
+               <label class="control-label" style="padding-left: 5px;padding-bottom: 5px;">Description</label>
+               <div class="col-sm-12">
+                  <input type="text" class="form-control input-sm" name="variableDescriptionValue" id="editVariableDescriptionValue" style="border-radius: 5px;">
+               </div>
+               </div>
+
+               <!-- Variable Value -->
+               <div id="variableValue" name="variableValue" class="form-group">
+               <label class="control-label" style="padding-left: 5px;padding-bottom: 5px;">Value</label>
+               <div class="col-sm-12">
+                  <input type="text" class="form-control input-sm" name="variableValueValue" id="editVariableValueValue" style="border-radius: 5px;">
+               </div>
+               </div>
+
+               <!-- Sensitive Value -->
+               <div id="sensitiveValue" name="sensitiveValue" class="form-group">
+                  <div class="checkbox-container col-sm-8 col-sm-offset-3">
+                     <label>
+                        <input type="hidden" name="_sensitive" id="_sensitive">
+                        <input type="checkbox" name="sensitive" class="" id="sensitive">
+                        <span class="custom"></span>
+                        <span class="control-label">Sensitive</span>
+                     </label>
+                  </div>
+               </div>
+
+               <!-- HCL Value -->
+               <div class="form-group">
+                  <div class="checkbox-container col-sm-8 col-sm-offset-3">
+                     <label>
+                        <input type="hidden" name="_hcl">
+                        <input type="checkbox" name="hcl" class="" id="hcl">
+                        <span class="custom"></span>
+                        <span class="control-label">HCL</span>
+                     </label>
+                  </div>
+               </div>
+         </div>
+      </div>
+   </div>
+   </form>
+
+   </div>
+            <div class="modal-footer">
+               <button id="editVariableSubmit" type="submit" class="btn btn-primary" data-loading-text="Applying..." data-submit="true" data-auto-reset="false">Save Changes</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- Delete Variable Modal -->
+   <div class="modal fade" tabindex="-1" role="dialog" id="delete-variable-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+	               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><svg class="close-icon"><use xlink:href="/assets/icons.svg#close-window"></use></svg></span></button>
+	               <h4 class="modal-title">Delete Variable?</h4>
+               </div>
+               <div class="modal-body">
+		            <form action="/plugin/opentofu/deleteVariable" method="post" role="form" class="form-horizontal" data-remote="true">
+                  <input type="hidden" name="_method" value="DELETE" id="_method">
+                  <input type="hidden" name="_deleteVariableId" id="_deleteVariableId">
+			         <p id="deleteMessage">Are you sure you would like to delete variable <code>opentf</code>? Any apps or instances currently associated with this instance will no longer be able to reach it.</p>			
+         			<input id="createVariableCSRF" type="hidden" name="_csrf">
+	            </form>
+	
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+               <button id="deleteVariableSubmit" type="button" class="button button-red instance-delete-submit-button" data-loading-text="Deleting..." data-submit="true" data-auto-reset="false">Delete</button>
+            </div>
+
+				</div>
+			</div>
+	</div>
+
+</div>
